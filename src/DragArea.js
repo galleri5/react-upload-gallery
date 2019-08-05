@@ -3,6 +3,7 @@ import { SortableContainer, SortableElement } from "react-sortable-hoc";
 
 import Context from "./Context";
 import { arrayMove } from "./Utils";
+import MasonryLayout from "./view/Masonry";
 
 const DragItem = SortableElement(({ children }) => <div>{children}</div>);
 const SortableList = SortableContainer(({ children }) => children);
@@ -21,11 +22,13 @@ const DragArea = props => {
           }}
         >
           <div className={className} style={style}>
-            {images.map((image, key) => (
-              <DragItem key={key} index={key}>
-                {children(image)}
-              </DragItem>
-            ))}
+            <MasonryLayout>
+              {images.map((image, key) => (
+                  <DragItem key={key} index={key}>
+                    {children(image)}
+                  </DragItem>
+              ))}
+            </MasonryLayout>
           </div>
         </SortableList>
       )}
